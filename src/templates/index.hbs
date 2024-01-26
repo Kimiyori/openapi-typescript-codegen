@@ -2,6 +2,7 @@
 
 {{#if @root.exportClient}}
 export { {{{clientName}}} } from './{{{clientName}}}';
+export { {{{clientName}}}Client } from "./instance";
 
 {{/if}}
 {{#if @root.exportCore}}
