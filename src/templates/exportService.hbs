@@ -1,5 +1,5 @@
 {{>header}}
-
+import { AxiosRequestConfig } from "axios";
 {{#equals @root.httpClient 'angular'}}
 {{#if @root.exportClient}}
 import { Injectable } from '@angular/core';
@@ -145,7 +145,7 @@ export class {{{name}}}{{{@root.postfix}}} {
 				{{/each}}
 			},
 			{{/if}}
-		});
+		}, axiosConfig);
 	}
 
 	{{/each}}

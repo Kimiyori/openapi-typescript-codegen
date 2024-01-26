@@ -19,6 +19,7 @@ describe('writeClientClass', () => {
         const templates: Templates = {
             index: () => 'index',
             client: () => 'client',
+            instance: () => 'instance',
             exports: {
                 model: () => 'model',
                 schema: () => 'schema',

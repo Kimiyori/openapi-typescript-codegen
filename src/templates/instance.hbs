@@ -1,0 +1,36 @@
+import Axios, { AxiosRequestConfig } from 'axios';
+import axiosRetry from 'axios-retry';
+
+import { BaseHttpRequest } from './core/BaseHttpRequest';
+import { OpenAPIConfig } from './core/OpenAPI';
+import { ApiRequestOptions } from './core/ApiRequestOptions';
+import { CancelablePromise } from './core/CancelablePromise';
+import { request as __request } from './core/request';
+
+import { {{clientName}} } from './{{clientName}}';
+
+type HttpRequestConstructor = new (config: OpenAPIConfig) => BaseHttpRequest;
+
+export class AxiosHttpRequestWithRetry extends BaseHttpRequest {
+  axiosInstance = Axios.create();
+
+  constructor(config: OpenAPIConfig) {
+    super(config);
+    axiosRetry(this.axiosInstance, {
+      retryCondition: (error) => {
+        if (!error.response) return false;
+
+        return error.response.status >= 400;
+      },
+    });
+  }
+
+  public override request<T>(options: ApiRequestOptions, axiosConfig?: AxiosRequestConfig): CancelablePromise<T> {
+    return __request(this.config, options, this.axiosInstance, axiosConfig);
+  }
+}
+
+export const {{clientName}}Client = (
+  config?: Partial<OpenAPIConfig>,
+  HttpRequest: HttpRequestConstructor = AxiosHttpRequestWithRetry
+) => new {{clientName}}(config, HttpRequest);
