@@ -2,16 +2,11 @@
     "name": "openapi-typescript-codegen",
     "version": "0.27.0",
     "description": "Library that generates Typescript clients based on the OpenAPI specification.",
-    "author": "Ferdi Koomen",
-    "homepage": "https://github.com/ferdikoomen/openapi-typescript-codegen",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/ferdikoomen/openapi-typescript-codegen.git"
-    },
-    "bugs": {
-        "url": "https://github.com/ferdikoomen/openapi-typescript-codegen/issues"
-    },
+    "homepage": "https://github.com/kimiyori/openapi-typescript-codegen",
     "license": "MIT",
+    "publishConfig": {
+        "registry": "https://nexus.capitalgroup.ru/repository/npm-release/"
+    },
     "keywords": [
         "openapi",
         "swagger",
@@ -24,12 +19,6 @@
         "axios",
         "angular",
         "node"
-    ],
-    "maintainers": [
-        {
-            "name": "Ferdi Koomen",
-            "email": "info@madebyferdi.com"
-        }
     ],
     "main": "dist/index.js",
     "types": "types/index.d.ts",
@@ -57,7 +46,8 @@
         "eslint:fix": "eslint . --fix",
         "prepare": "npm run clean && npm run release",
         "codecov": "codecov --token=66c30c23-8954-4892-bef9-fbaed0a2e42b",
-        "docker": "docker build -t eeelenbaas/openapi-typescript-codegen ."
+        "docker": "docker build -t eeelenbaas/openapi-typescript-codegen .",
+        "publish-to-nexus": "npm --no-git-tag-version version patch && npm publish"
     },
     "dependencies": {
         "@apidevtools/json-schema-ref-parser": "^10.1.0",
