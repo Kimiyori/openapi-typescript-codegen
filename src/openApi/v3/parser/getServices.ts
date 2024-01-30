@@ -31,7 +31,26 @@ export const getServices = (openApi: OpenApi): Service[] => {
                             const tags = op.tags?.length ? op.tags.filter(unique) : ['Default'];
                             tags.forEach(tag => {
                                 const operation = getOperation(openApi, url, method, tag, op, pathParams);
-
+                                operation.parameters.push({
+                                    in: 'axios',
+                                    prop: 'axiosConfig',
+                                    export: 'generic',
+                                    name: 'axiosConfig',
+                                    type: 'AxiosRequestConfig',
+                                    base: 'AxiosRequestConfig',
+                                    template: null,
+                                    link: null,
+                                    description: 'AxiosConfig',
+                                    isDefinition: false,
+                                    isReadOnly: false,
+                                    isRequired: false,
+                                    isNullable: false,
+                                    imports: [],
+                                    enum: [],
+                                    enums: [],
+                                    properties: [],
+                                    mediaType: null,
+                                });
                                 // If we have already declared a service, then we should fetch that and
                                 // append the new method to it. Otherwise we should create a new service object.
                                 const service: Service = services.get(operation.service) || {

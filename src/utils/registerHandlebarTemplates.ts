@@ -56,6 +56,7 @@ import templateExportModel from '../templates/exportModel.hbs';
 import templateExportSchema from '../templates/exportSchema.hbs';
 import templateExportService from '../templates/exportService.hbs';
 import templateIndex from '../templates/index.hbs';
+import templateInstance from '../templates/instance.hbs';
 import partialBase from '../templates/partials/base.hbs';
 import partialExportComposition from '../templates/partials/exportComposition.hbs';
 import partialExportEnum from '../templates/partials/exportEnum.hbs';
@@ -88,6 +89,7 @@ import { registerHandlebarHelpers } from './registerHandlebarHelpers';
 export interface Templates {
     index: Handlebars.TemplateDelegate;
     client: Handlebars.TemplateDelegate;
+    instance: Handlebars.TemplateDelegate;
     exports: {
         model: Handlebars.TemplateDelegate;
         schema: Handlebars.TemplateDelegate;
@@ -119,6 +121,7 @@ export const registerHandlebarTemplates = (root: {
     // Main templates (entry points for the files we write to disk)
     const templates: Templates = {
         index: Handlebars.template(templateIndex),
+        instance: Handlebars.template(templateInstance),
         client: Handlebars.template(templateClient),
         exports: {
             model: Handlebars.template(templateExportModel),
