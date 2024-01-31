@@ -30,6 +30,7 @@ const handlebarsPlugin = () => ({
                 knownHelpersOnly: true,
                 knownHelpers: {
                     ifdef: true,
+                    isAnyRequired: true,
                     equals: true,
                     notEquals: true,
                     containsSpaces: true,
