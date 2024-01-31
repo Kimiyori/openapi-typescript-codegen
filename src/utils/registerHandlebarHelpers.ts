@@ -6,6 +6,7 @@ import type { Enum } from '../client/interfaces/Enum';
 import type { Model } from '../client/interfaces/Model';
 import type { HttpClient } from '../HttpClient';
 import { unique } from './unique';
+import { OperationParameter } from '../client/interfaces/OperationParameter';
 
 export const registerHandlebarHelpers = (root: {
     httpClient: HttpClient;
@@ -19,7 +20,9 @@ export const registerHandlebarHelpers = (root: {
         }
         return options.inverse(this);
     });
-
+    Handlebars.registerHelper('isAnyRequired', (value: OperationParameter[], returnValue: string) => {
+        return value.some(v => v.isRequired) ? '' : returnValue;
+    });
     Handlebars.registerHelper(
         'equals',
         function (this: any, a: string, b: string, options: Handlebars.HelperOptions): string {

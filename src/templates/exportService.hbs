@@ -75,7 +75,7 @@ export class {{{name}}}{{{@root.postfix}}} {
 	public {{{name}}}({{>parameters}}): Observable<{{>result}}> {
 		return this.httpRequest.request({
 	{{else}}
-	public {{{name}}}({{>parameters}}): CancelablePromise<{{>result}}> {
+	public {{{name}}}({{>parameters}}{{isAnyRequired parameters ' = {}'}}): CancelablePromise<{{>result}}> {
 		return this.httpRequest.request({
 	{{/equals}}
 	{{else}}
