@@ -18,12 +18,14 @@ export const getEnum = (values?: (string | number)[]): Enum[] => {
                         description: null,
                     };
                 }
+
                 return {
-                    name: String(value)
-                        .replace(/\W+/g, '_')
+                    name: `'${value
+                        .replace(/(\W+)/g, '_$1')
                         .replace(/^(\d+)/g, '_$1')
+                        .replace(/\s+/g, '_')
                         .replace(/([a-z])([A-Z]+)/g, '$1_$2')
-                        .toUpperCase(),
+                        .toUpperCase()}'`,
                     value: `'${value.replace(/'/g, "\\'")}'`,
                     type: 'string',
                     description: null,
