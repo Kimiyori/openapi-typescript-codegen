@@ -1,6 +1,6 @@
 {
     "name": "openapi-typescript-codegen",
-    "version": "0.27.1",
+    "version": "0.27.2",
     "description": "Library that generates Typescript clients based on the OpenAPI specification.",
     "homepage": "https://github.com/kimiyori/openapi-typescript-codegen",
     "license": "MIT",
