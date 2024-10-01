@@ -4,9 +4,9 @@ import { EOL } from 'os';
 
 import type { Enum } from '../client/interfaces/Enum';
 import type { Model } from '../client/interfaces/Model';
+import { OperationParameter } from '../client/interfaces/OperationParameter';
 import type { HttpClient } from '../HttpClient';
 import { unique } from './unique';
-import { OperationParameter } from '../client/interfaces/OperationParameter';
 
 export const registerHandlebarHelpers = (root: {
     httpClient: HttpClient;

@@ -1,4 +1,5 @@
 import type { Client } from '../../client/interfaces/Client';
+import { Model } from '../../client/interfaces/Model';
 import type { OpenApi } from './interfaces/OpenApi';
 import { getModels } from './parser/getModels';
 import { getServer } from './parser/getServer';
@@ -10,10 +11,11 @@ import { getServiceVersion } from './parser/getServiceVersion';
  * all the models, services and schema's we should output.
  * @param openApi The OpenAPI spec  that we have loaded from disk.
  */
+export let models: Model[] = [];
 export const parse = (openApi: OpenApi): Client => {
     const version = getServiceVersion(openApi.info.version);
     const server = getServer(openApi);
-    const models = getModels(openApi);
+    models = getModels(openApi);
     const services = getServices(openApi);
 
     return { version, server, models, services };

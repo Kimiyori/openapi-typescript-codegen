@@ -1,4 +1,5 @@
 import type { Model } from '../../../client/interfaces/Model';
+import { models } from '..';
 import type { OpenApiSchema } from '../interfaces/OpenApiSchema';
 
 export const getModelDefault = (definition: OpenApiSchema, model?: Model): string | undefined => {
@@ -25,6 +26,14 @@ export const getModelDefault = (definition: OpenApiSchema, model?: Model): strin
             return JSON.stringify(definition.default);
 
         case 'string':
+            const modelName = definition.$ref?.split('/').pop();
+            const foundModel = models.find(m => m.name === modelName);
+            if (foundModel) {
+                const foundDefault = foundModel.enum.find(en => en.value === `'${definition.default}'`);
+                if (foundDefault) {
+                    return `${modelName}.${foundDefault.name.replace(/^'(.*)'$/, '$1')}`;
+                }
+            }
             return `'${definition.default}'`;
 
         case 'object':

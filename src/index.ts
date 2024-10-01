@@ -74,7 +74,6 @@ export const generate = async ({
         useUnionTypes,
         useOptions,
     });
-
     switch (openApiVersion) {
         case OpenApiVersion.V2: {
             const client = parseV2(openApi);
